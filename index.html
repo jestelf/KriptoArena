@@ -10,6 +10,7 @@
 </head>
 <body>
   <h1>CryptoArena</h1>
+  <canvas id="arena" width="400" height="200" style="border:1px solid #ccc;"></canvas>
   <button id="next">Следующий раунд</button>
   <div id="log"></div>
   <script type="module">
@@ -25,10 +26,38 @@
       new AttackModule('KeySpoof', 'ECDSA', 0.4, 1)
     ];
     const log = document.getElementById('log');
+    const canvas = document.getElementById('arena');
+    const ctx = canvas.getContext('2d');
+
+    function renderArena(last) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '14px Arial';
+      defenses.forEach((def, i) => {
+        const x = 80 + i * 120;
+        const y = canvas.height / 2;
+        const radius = 10 + def.level * 5;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'lightblue';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        if (last && last.defense === def.name) {
+          ctx.strokeStyle = last.success ? 'red' : 'green';
+        } else {
+          ctx.strokeStyle = '#333';
+        }
+        ctx.stroke();
+        ctx.fillStyle = 'black';
+        ctx.fillText(def.name, x - ctx.measureText(def.name).width / 2, y + radius + 15);
+      });
+    }
+
+    renderArena();
     document.getElementById('next').addEventListener('click', () => {
       const result = simulateRound(defenses, attacks);
       log.textContent += `Защита: ${result.defense} (lvl ${result.level})\n` +
         `Атака: ${result.attack} => ${result.success ? 'успех' : 'провал'}\n\n`;
+      renderArena(result);
     });
   </script>
 </body>

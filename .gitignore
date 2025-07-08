@@ -1,3 +1,9 @@
+
+node_modules/
+dist/
+.DS_Store
+.tmp
+
 # Python
 __pycache__/
 *.py[cod]
@@ -20,4 +26,4 @@ ENV/
 # Testing artifacts
 .pytest_cache/
 htmlcov/
-node_modules/
+
