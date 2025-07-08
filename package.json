@@ -1,0 +1,16 @@
+{
+  "name": "kriptoarena",
+  "version": "1.0.0",
+  "description": "Общая идея: CryptoArena — Эволюция Защиты 🔍 Что это? Браузерный симулятор, где каждый раунд:",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "jest": "^30.0.4"
+  }
+}
