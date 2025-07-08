@@ -53,7 +53,6 @@
     }
 
     renderArena();
-
     document.getElementById('next').addEventListener('click', () => {
       const result = simulateRound(defenses, attacks);
       log.textContent += `Защита: ${result.defense} (lvl ${result.level})\n` +
